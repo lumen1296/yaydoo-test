@@ -1,6 +1,6 @@
-import { ProductDTO } from '@DTO/Product';
+import { ProductDTO } from '@DTO/Product.dto';
 import { Product } from '@entities/Product.entity';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Query } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Repository } from 'typeorm';
 import { getProductMapper, getProductsMapper } from '../mapper/product.mapper';
@@ -39,7 +39,9 @@ export class ProductService {
             products = await this.productRepository.find({
                 where: {
                     price: Between(filter.value1,filter.value2)
-                }
+                },
+                take: filter.items ? filter.items : 10,
+                skip: filter.page && filter.items? filter.page * filter.items : 0
             })
         }
         else{
@@ -48,7 +50,9 @@ export class ProductService {
                     products = await this.productRepository.find({
                         where: {
                             sku: filter.value1
-                        }
+                        },
+                        take: filter.items ? filter.items : 10,
+                        skip: filter.page && filter.items? filter.page * filter.items : 0
                     })
                    break; 
                 } 
@@ -56,7 +60,9 @@ export class ProductService {
                     products = await this.productRepository.find({
                         where: {
                             name: filter.value1
-                        }
+                        },
+                        take: filter.items ? filter.items : 10,
+                        skip: filter.page && filter.items? filter.page * filter.items : 0
                     })
                    break; 
                 } 
@@ -64,7 +70,9 @@ export class ProductService {
                     products = await this.productRepository.find({
                         where: {
                             quantity: filter.value1
-                        }
+                        },
+                        take: filter.items ? filter.items : 10,
+                        skip: filter.page && filter.items? filter.page * filter.items : 0
                     })
                    break; 
                 } 

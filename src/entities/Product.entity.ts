@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity({ name: 'PRODUCT' })
 export class Product {
@@ -13,8 +13,8 @@ export class Product {
     name: string;
 
     @Column({ name: 'PRICE' })
-    price: string;
+    price: number;
 
     @Column({ name: 'QUANTITY' })
-    quantity: string;
+    quantity: number;
 }

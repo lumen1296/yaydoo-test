@@ -1,5 +1,5 @@
 import { Product} from "@entities/Product.entity";
-import { ProductDTO } from "@DTO/Product";
+import { ProductDTO } from "@DTO/Product.dto";
 
 
 export const getProductMapper = async (product: Product): Promise<ProductDTO> => {
@@ -8,9 +8,7 @@ export const getProductMapper = async (product: Product): Promise<ProductDTO> =>
     sku: product.sku,
     name: product.name,
     price: product.price,
-    quantity: product.quantity,
-
-  };
+    quantity: product.quantity};
 
   return productDTO;
 }

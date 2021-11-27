@@ -2,7 +2,7 @@ import { Product} from "@entities/Product.entity";
 import { ProductDTO } from "@DTO/Product";
 
 
-export const getProductByIdMapper = async (product: Product): Promise<ProductDTO> => {
+export const getProductMapper = async (product: Product): Promise<ProductDTO> => {
   const productDTO : ProductDTO ={
     id: product.id,
     sku: product.sku,
@@ -16,6 +16,8 @@ export const getProductByIdMapper = async (product: Product): Promise<ProductDTO
 }
 
 
+
+
 export const getProductsMapper = async (products: Array<Product>): Promise<ProductDTO[]> => {
   const productsDTO : ProductDTO [] = [];
   products.forEach((product)=>{
@@ -23,7 +25,7 @@ export const getProductsMapper = async (products: Array<Product>): Promise<Produ
       sku: product.sku,
       name: product.name,
       price: product.price,
-      quantity: product.quantity,});
+      quantity: product.quantity});
   })
   return productsDTO;
 }

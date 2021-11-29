@@ -42,10 +42,8 @@ export class OrderService {
                 });
             })
             await this.orderItemRepository.save(orderItems);
-            console.log('aca')
-            console.log(await this.orderRepository.findOne({ where: { userId }, relations: ["orderItems"] }));
-            //await this.shoppingCartRepository.delete(shoppingCartToOrder.id);
-            //await this.shoppingCartRepository.delete(shoppingCartToOrder.id);
+            await this.shoppingCartRepository.delete(shoppingCartToOrder.id);
+            await this.shoppingCartRepository.delete(shoppingCartToOrder.id);
             
             return Promise.resolve(await this.orderRepository.findOne({ where: { userId }, relations: ["orderItems"] }));
         }

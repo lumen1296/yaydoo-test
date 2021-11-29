@@ -28,6 +28,7 @@ export class ShoppingCartService {
             updateDate: new Date()
 
         });
+
         return Promise.resolve(cartItemMapper(cartItem));
     }
 
@@ -75,7 +76,6 @@ export class ShoppingCartService {
 
     async getShoppingCart(id: number): Promise<ShoppingCartDTO> {
         const shoppingCart = await this.shoppingCartRepository.findOne({ where: { id }, relations: ["cartItems"] });
-        console.log(shoppingCart)
         if (shoppingCart) {
             return Promise.resolve(shoppingCartMapper(shoppingCart));
         }

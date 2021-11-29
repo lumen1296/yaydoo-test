@@ -1,12 +1,16 @@
 import { User } from "@entities/User.entity";
-import { CartItemDTO } from "./CartItem.dto";
+import { OrderItemDTO } from "./OrderItem.dto";
 
-export interface ShoppingCartDTO {
+
+export interface OrderDTO {
     id: number;
     total: number;
     subtotal: number;
     createDate: Date;
     updateDate: Date;
-    cartItems? : CartItemDTO[];
+    orderItems : OrderItemDTO[];
     userId: number;
+    paymentId: number;
+    status : boolean;
+
 }

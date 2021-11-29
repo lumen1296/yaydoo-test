@@ -1,12 +1,12 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne} from 'typeorm';
 import { Product } from './Product.entity';
-import { ShoppingCart } from './ShoppingCart.entity';
+import { Order } from './Order.entity';
 
-@Entity({ name: 'CART_ITEM' })
-export class CartItem {
+@Entity({ name: 'ORDER_ITEM' })
+export class OrderItem {
 
     @PrimaryGeneratedColumn({ name: 'ID' })
-    id: number;
+    id?: number;
 
     @Column({ name: 'QUANTITY' })
     quantity: number;
@@ -21,9 +21,10 @@ export class CartItem {
     @JoinColumn({ name: 'PRODUCT_ID' })
     productId: number;
 
-    @ManyToOne(()=>ShoppingCart, shoppingCart=>shoppingCart.cartItems, { onDelete: 'CASCADE' })
-    @JoinColumn({ name: 'SHOPPING_CART_ID' })
-    shoppingCartId :number
+    @ManyToOne(()=>Order, order=>order.orderItems)
+    @JoinColumn({ name: 'ORDER_ID' })
+    orderId? :number
+
 
 
 

@@ -17,4 +17,10 @@ export class Product {
 
     @Column({ name: 'QUANTITY' })
     quantity: number;
+
+    @Column({ name: 'CREATE_DATE' })
+    createDate: Date;
+
+    @Column({ name: 'UPDATE_DATE' })
+    updateDate: Date;
 }

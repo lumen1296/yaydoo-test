@@ -4,4 +4,6 @@ export interface ProductDTO {
     name: string;
     price: number;
     quantity: number;
+    createDate: Date;
+    updateDate: Date;
 }

@@ -1,6 +1,5 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiParam, ApiQuery } from '@nestjs/swagger';
-import { FilterProduct } from '@shared/constants/filterProduct.interface';
 import { ProductService } from '../service/product.service';
 
 @Controller('')
@@ -9,10 +8,11 @@ export class ProductController {
   constructor(
     private productService: ProductService
   ) { }
-
+  
   @Get('/products/')
-  getProducts() {
-    return this.productService.getProducts();
+  getProducts(@Query('items') items: number,
+    @Query('page') page: number) {
+    return this.productService.getProducts(items, page);
   }
 
 
@@ -22,12 +22,20 @@ export class ProductController {
   }
 
 
-  @ApiQuery({ name: 'filter', description: 'Gets the Action id'})
-  @ApiQuery({ name: 'value', description: 'Gets the Action id'})
-  @ApiQuery({ name: 'value2', description: 'Gets the Action id'})
   @Get('/productsFilter/')
-  getProductsByFilter(@Query() filter: FilterProduct) {
-    return this.productService.getProductByFilter(filter);
+  @ApiQuery({
+    name: "value2",
+    type: String,
+    required: false
+  })
+  getProductsByFilter(
+    @Query('items') items: number,
+    @Query('page') page: number,
+    @Query('name') name: string,
+    @Query('value1') value1: string,
+    @Query('value2') value2?: string
+  ) {
+    return this.productService.getProductByFilter(items, page, name, value1, value2);
   }
 
 

@@ -1,6 +1,6 @@
-export interface CartItemDTO {
+export interface OrderItemDTO {
     id: number;
-    shoppingCartId: number;
+    orderId: number;
     productId: number;
     quantity: number;
     createDate: Date;
